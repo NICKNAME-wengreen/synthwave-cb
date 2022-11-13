@@ -44,7 +44,8 @@ let Tracks = [new Audio('music/DiscoZombiItalia.mp3'),
               new Audio('music/LookingForTracyTzu.mp3'),
               new Audio('music/MondayHunt.mp3'),
               new Audio('music/DivisionRuine.mp3'),
-              new Audio('music/RollerMobster.mp3')
+              new Audio('music/RollerMobster.mp3'),
+              new Audio('music/TurboKiller.mp3')
              ];
 
 let TracksDurs=[];
@@ -61,8 +62,9 @@ let TracksNames = ["Disco Zombi Italia",
                    "Le Perv",
                    "Looking For Tracy Tzu",
                    "Monday Hunt",
-                   "DivisionRuine",
-                   "Roller Mobster"
+                   "Division Ruine",
+                   "Roller Mobster",
+                   "Turbo Killer"
                   ];
 
 let TracksIcons = ["cp-ep2.jpg",
@@ -70,7 +72,8 @@ let TracksIcons = ["cp-ep2.jpg",
                    "cp-ep3.jpg",
                    "cp-lt.jpg",
                    "cp-ep2.jpg",
-                   "cp-ep2.jpg"
+                   "cp-ep2.jpg",
+                   "cp-ep3.jpg"
                   ];
                   
 let currentTrack=0;
