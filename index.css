@@ -1,0 +1,681 @@
+      *{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        z-index:1;
+      }
+      
+      @font-face {
+        font-family: RussoOne;
+        src: url(RussoOne-Regular.ttf);
+      }
+      @font-face {
+        font-family: Raleway;
+        src: url(Raleway-VariableFont_wght.ttf);
+      }
+      @font-face {
+        font-family: Syncopate;
+        src: url(Syncopate-Regular.ttf);
+      }
+      @font-face {
+        font-family: NewsCycle-Reg;
+        src: url(NewsCycle-Regular.ttf);
+      }
+      @font-face {
+        font-family: NewsCycle-Bold;
+        src: url(NewsCycle-Bold.ttf);
+      }
+      @font-face {
+        font-family: SairaCond-Med;
+        src: url(SairaCondensed-Medium.ttf);
+      }
+      @font-face {
+        font-family: Jost-VariableFont;
+        src: url(Jost-VariableFont_wght.ttf);
+      }
+
+      @keyframes ThrdDPushOut {
+        0% {
+        }
+        100% {
+          border-radius: 2px;
+          box-shadow: inset 0 0 14px 0px rgba(0,0,0,0.5);
+        }
+      }
+
+      @keyframes fadeSlide {
+        0% {
+          transform: translateX(0) translateY(0);
+        }
+        100% {
+          backdrop-filter: blur(10px);
+          transform: translateX(2px) translateY(0px);
+        }
+      }
+
+      @keyframes sizeOutFX {
+        0%    {background-color:red; width:50%; height:50%; font-size:100%;}
+        100%  {background-color:gray; width:50.5%; height:50%; font-size:101%;}
+      }
+
+      @keyframes circlePress {
+        0%    {background-image: url(circle-outline.svg);}
+        100%  {background-image: url(circle-outlineplus.svg); filter:invert(100%);height: 10%; transform: translateY(-10%);blur(0px);opacity(100%)}
+      }
+      
+      @keyframes blurIn {
+        0%    {filter: blur(0px);}
+        100%  {filter: blur(3px);}
+      }
+      
+      @keyframes blurOut {
+        0%    {filter: blur(3px);}
+        100%  {filter: blur(0px);}
+      }    
+      
+      @keyframes bgChangeAnim {
+        0%    {opacity:100%}
+        33%   {opacity:30%;filter: blur(2px);}
+        100%  {filter: blur(0px);background-image: var(--animNextBg); opacity:100%}
+      }
+      
+      @keyframes imgChangeAnim {
+        0%    {opacity:100%}
+        33%   {opacity:30%;filter: blur(2px);}
+        100%  {filter: blur(0px);opacity:100%}
+      }
+      
+      @keyframes slideMov {
+        0%    {background-color: pink;}
+        100%  {background-color: blue;}
+      }
+      
+      
+      html, body {
+        font: normal 10px Raleway;
+        max-width: 100%;
+        overflow-x: hidden;
+      }
+
+      body {
+        background-image: #f0f6ff;
+      }
+      
+      .logoTextBar {
+        font: normal 200% RussoOne;
+        color: white;
+      }
+      
+      .txtMiddleH1{
+        color: #0afff7;
+        font: normal 60px RussoOne;
+      }
+      
+      .centerMiddle{
+        color: white; 
+        font: normal 30px Raleway;
+      }
+
+      .logoBar {
+        height: 95%;
+        width: auto;
+        filter: invert(48%) sepia(13%) saturate(3227%) hue-rotate(130deg) brightness(195%) contrast(80%);
+      }
+
+      .logoBar:hover {
+        height: 95%;
+        width: auto;
+        filter: invert(48%) sepia(13%) saturate(3227%) hue-rotate(130deg) brightness(195%) contrast(80%) invert(100%) blur(1px);
+      }
+
+      .buttonBar {
+        font: normal 10px Syncopate;
+        color: white;
+        padding-left: 5vw;
+        padding-right: 5vw;
+        display: flex;
+        align-items: center;
+        white-space: pre;
+      }
+      
+      .buttonBarBtn {
+        font: normal 200% Syncopate;
+        color: white;
+        padding-left: 1vw;
+        padding-right: 1vw;
+        border: none;
+        background-color: inherit;
+        padding: 14px 28px;
+        cursor: pointer;
+        display: inline-block;
+        user-select: none;
+      }
+
+      .buttonBarBtn:hover {
+        font: normal 200% Syncopate;
+        color: white;
+        padding-left: 1vw;
+        padding-right: 1vw;
+        border: none;
+        filter: blur(1px) invert(10%);
+        padding: 14px 28px;
+        cursor: pointer;
+        display: inline-block;
+      }
+
+      .siteBar {
+        height: 3vw;
+        width: 100vw;
+        background-color: #121417;   
+        padding-left: 5vw;
+        padding-right: 5vw;
+        display: flex;
+        align-items: center;
+        font: normal 10px RussoOne;
+      }
+      
+      .siteBar:hover {
+        filter: invert(10%);
+      }
+
+      .middleBar {
+        height: 20vw;
+        width: 100vw;
+        background-color: #2d343d;   
+        background-repeat: no-repeat;
+        background-position: 83% -23%;
+        background-size: 40%;
+        background-image: url("carpenter_brut.png");
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        user-select: none;
+      }
+
+      .middlebarButtons {
+        padding-top: 1vh;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .middlebarButtonA {
+        font: normal 20px SairaCond-Med;
+        border-color: transparent;
+        height: 5vh;
+        width: 8vw;
+        color: black;
+        background-color: #0afff7;
+      }
+      
+      .middlebarButtonA:hover {
+        position: relative;
+        animation-name: ThrdDPushOut;
+        animation-duration: .45s;
+        animation-direction: normal;
+        animation-fill-mode: forwards;
+      }
+
+      .middlebarButtonB {
+        font: normal 20px SairaCond-Med;
+        border-radius: 6px;
+        border-color: transparent;
+        height: 5vh;
+        width: 8vw;
+        color: white;
+        background-color: transparent;
+        background-repeat: no-repeat;
+        background-image: url(arrow.png);
+        background-size: 30%;
+        background-position: 110% 50%;
+        filter: invert(10%);
+      }
+
+      .middlebarButtonB:hover {
+        position: relative;
+        animation-name: fadeSlide;
+        animation-duration: .45s;
+        animation-direction: normal;
+        animation-fill-mode: forwards;
+      }
+
+      .mainBar {
+        font: normal 20px NewsCycle-Reg;
+        height: auto;
+        width: 100vw;
+        background-color: #d5e3f7;   
+        padding-left: 5vw;
+        padding-right: 5vw;
+        padding-top: 5vh;
+        padding-bottom: 5vh;
+        box-shadow: inset 0 0 14px 0px rgba(0,0,0,0.75);
+      }
+
+      .mainGrid {
+        display: flex; 
+        padding-left: 4vw;
+        padding-right: 4vw;
+        padding-top: 2%;
+        padding-bottom: 2%;
+        user-select:none;
+      }
+
+      .mainGridColumnArticle {
+        font: normal 40px SairaCond-Med;
+        display: inline-block;
+      }
+        
+      .mainAdditonArticle {
+        color: cyan;
+        font: normal 40px SairaCond-Med;
+        display: inline-block;
+      }
+    
+      .mainAdditonArticleRed {
+        color: red;
+        font: normal 40px SairaCond-Med;
+        display: inline-block;
+      }
+      
+      .mainAdditonArticleWhite {
+        color: white;
+        font: normal 40px SairaCond-Med;
+        display: inline-block;
+      }
+      .mainContainerArticle {
+        margin-bottom: 3%;
+      }
+      
+      .mainGridColumn {
+        border-radius: 12px;
+        padding: 3%;
+        width: 50%;
+        height: auto;
+        width: 50%;
+        max-width: 55%;
+        max-height: 55%;
+      }
+      
+      .mainGridColumn:hover {
+        animation-name: sizeOutFX;
+        animation-duration: .45s;
+        animation-direction: normal;
+        animation-fill-mode: forwards;
+      }
+      
+      .mainAdditionA {
+        font: normal 25px Jost-VariableFont;
+        color: white;
+        border-radius: 12px;
+        background-color: #141412;
+        margin-top: 4%;
+        padding: 3%;
+        display: flex;
+        border-right: 1vh transparent black;
+        border-top: 1vh solid #7c93e9;
+        user-select: none;
+        box-shadow: 6px 6px 6px black;
+      }
+      
+      .mainAdditionAText {
+        padding: 3%;
+        text-shadow: #960800 3px 5px;
+        background-color: #100c14;
+        border-radius: 1vh;
+        box-shadow: 8px 8px 10px black;
+      }
+
+      .mainAdditionAImage {
+        max-width: 45%;
+        max-height: auto;
+        border-radius: 10px;
+      }
+
+      .mainAdditionAImageTrilogy {
+        min-width: 40vw;
+        min-height: 40vw;
+        max-width: 40vw;
+        max-height: 40vw;
+        border-radius: 10px;  
+        background-image: url(carpBrutTrilogy.jpg);
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        user-select: none;
+        padding-bottom: 1vh;
+        margin-top: auto;
+        margin-bottom: auto;
+        box-shadow: 8px 8px 10px black;
+      }
+
+      .mainAdditionAImageHLM2 {
+        min-width: 40vw;
+        min-height: 45vh;
+        max-width: 40vw;
+        max-height: 45vh;
+        border-radius: 10px;  
+        background-image: url(hlm2bg.jpg);
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        user-select: none;
+        padding-bottom: 1vh;
+        margin-top: auto;
+        margin-bottom: auto;
+        box-shadow: 8px 8px 10px black;
+      }
+      
+      .mainAdditionAImageLeatherTeeth {
+        min-width: 40vw;
+        min-height: 40vw;
+        max-width: 40vw;
+        max-height: 40vw;
+        border-radius: 10px;  
+        background-image: url(cp-lt.jpg);
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        user-select: none;
+        padding-bottom: 1vh;
+        margin-top: auto;
+        margin-bottom: auto;
+        box-shadow: 8px 8px 10px black;
+      }
+
+      #bgImgA{
+        transition-duration: 3s;
+      }
+      #bgImgB{
+        transition-duration: 3s;
+      }
+
+      .circleButton {
+        position: relative;
+        width: 8%;
+        height: 8%;
+        box-shadow: 0px 0.3vh 3px black;
+        border-radius: 40px;
+        user-select: none;
+        filter: invert(30%) blur(3px) opacity(80%);
+      }
+
+      .circleButton:hover {
+        animation-name: circlePress;
+        animation-duration: .45s;
+        animation-direction: normal;
+        animation-fill-mode: forwards;
+      }
+
+      .flexCenter {
+        display: flex;
+        flex-direction: row;
+        align-items: flex;
+        justify-content: center;
+      }
+
+      .spacefiller {
+        width: auto;
+        height: 38vh;
+        background-color:transparent; 
+      }
+
+      .musicPlayer {
+        position:relative;
+        margin-top: 5%;
+        padding:1%;
+        border-radius: 10px;
+        background-color: #fc03a9;
+        width: auto;
+        height: 70vh;
+        box-shadow: 8px 8px 20px black;
+        padding-left: 5.5%;
+        padding-top: 3%;
+        user-select: none;
+        overflow: hidden;
+        z-index: 97;
+      }
+      
+      .musicPlayerPreview {
+        position:relative;
+        display: inline-block;
+        top:-17%;
+      }
+      
+      .musicPlayerImg {
+        position:relative;
+        border-radius: 4px;
+        background-color: #db60b2;
+        background-image: url(cp-lt3.jpg);
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        width: 40vh;
+        height: 40vh;
+        box-shadow: 8px 8px 20px black;
+        margin-bottom: 10%;
+        overflow: hidden;
+        z-index: 99;
+      }
+
+      .musicPlayerImgMain {
+        position:relative;
+        border-radius: 4px;
+        width: 40vh;
+        height: 40vh;
+        box-shadow: 8px 8px 20px black;
+        margin-bottom: 10%;
+        z-index: 99;
+      }
+      
+      .musicPlayerImgArticle {
+        position:relative;
+        border-radius: 4px;
+        background-color: rgba(10,10,10,0.5);
+        width: 40vh;
+        height: 10vh;
+        box-shadow: 8px 8px 20px black;
+        overflow: hidden;
+        color: white;
+        font: normal 40px SairaCond-Med;
+        display : table-cell;
+        vertical-align: middle;
+        text-align: center;
+        z-index: 98;
+        backdrop-filter: blur(10px);
+      }
+      
+      .musicPlayerControlPanel{
+        position:relative;
+        border-radius: 4px;
+        margin-left: 5%;
+        background-color: rgba(90,10,90,0.75);
+        height: 56vh;
+        width: 55vw;
+        height: 90%;
+        box-shadow: 8px 8px 20px black;
+        display: inline-block;
+        overflow: hidden;
+        padding:2%;
+        z-index: 98;
+        backdrop-filter: blur(10px);
+      }
+      
+      .musicPlayerTrackArticle {
+        border-radius: 4px;
+        background-color: rgba(10,10,10,0.5);
+        width: 55vw;
+        height: 7vh;
+        box-shadow: 8px 8px 20px black;
+        overflow: hidden;
+        color: white;
+        font: normal 40px SairaCond-Med;
+        text-align: center;
+        display : table-cell;
+        vertical-align: middle;
+        z-index: 98;
+      }
+      
+      .musicPlayerControlButtons {
+        border-radius: 4px;
+        background-color: rgba(120,10,120,0.45);
+        width: 51.667vw;
+        height: 32vh;
+        box-shadow: 8px 8px 20px black;
+        overflow: hidden;
+        display: flex;
+        flex-direction: row;
+        align-items: flex;
+        justify-content: center;
+        margin-bottom: 5vh;
+        z-index: 98;
+      }
+      
+      .musicPlayerStopButton {
+        width: 30%;
+        height: auto;
+        z-index: 99;
+      }
+      
+      .musicPlayerPrevButton {
+        width: 30%;
+        height: auto;
+        transform: scaleX(-1) translatex(-18%);
+        z-index: 99;
+      }
+      
+      .musicPlayerNextButton {
+        width: 30%;
+        height: auto;
+        transform: translatex(-21%);
+        z-index: 99;
+      }
+      
+      .musicPlayerPlate {
+        border-radius: 4px;
+        background-color: rgba(10,10,10,0.5);
+        width: auto;
+        max-height: 6.74vh;
+        min-height: 6.74vh;
+        max-height: 12%;
+        min-height: 12%;
+        box-shadow: 8px 8px 20px black;
+        overflow: hidden;
+        text-align: center;
+        font-size: 30px;
+        z-index: 98;
+
+      }
+      
+      .musicPlayerTime {
+        border-radius: 4px;
+/*         background-color: black; */
+/*         box-shadow: 2px 2px 15px black; */
+        max-width: 4vw;
+        max-height: 1vh;
+        min-width: 4vw;
+        min-height: 1vh;
+        overflow: hidden;
+        color: white;
+        font: normal 3vh SairaCond-Med;
+        display: table-cell;
+        position: relative;
+        z-index: 99;
+        padding-left:1vw;
+        padding-right:1vw;
+        backdrop-filter: blur(3px) opacity(10%);
+/*         text-align: center; */
+      }
+      
+      .musicPlayerSlide {
+        border-radius: 4px;
+        background-color: rgba(0,0,0,0);
+        width: 100%;
+        height: 3vh;
+        display: table-cell;
+        position: relative;
+        z-index: 98;
+      }
+      
+      .musicPlayerSlideLine {
+        border-radius: 4px;
+        background-color: rgba(256,256,256,1);
+        width: 100%;
+        height: 1vh;
+        display: inline-block;
+        vertical-align: middle;
+        box-shadow: 0px 0px 16px 7px rgba(200, 0, 205, .45);
+      }
+      
+      .musicPlayerSlideButton {
+        border-radius: 45%;
+        background-color: red;
+        width: 2vh;
+        height: 2vh;
+        position:relative;
+        z-index: 100;
+        top:-3vh;
+        box-shadow: inset 0 0 4px 1px rgba(0,0,0,0.55);
+      }
+      
+      .verticalSlide {
+        border-radius: 4px;
+        background-color: rgba(110,0,0,1);
+        width: 3vh;
+        height: 100%;
+        display: table-cell;
+        position: relative;
+        z-index: 98;
+        padding-left:1vh;
+      }
+      
+      .verticalSlideLine {
+        border-radius: 4px;
+        background-color: rgba(256,256,256,1);
+        width: 1vh;
+        height: 100%;
+        display: inline-block;
+/*         text-align: middle; */
+        box-shadow: 0px 0px 16px 7px rgba(200, 0, 205, .45);
+      }
+
+      .verticalSlideButton {
+        border-radius: 45%;
+        background-color: red;
+        width: 22vh;
+        height: 22vh;
+        position:relative;
+        z-index: 100;
+/*         top:-3vh; */
+        box-shadow: inset 0 0 4px 1px rgba(0,0,0,0.55);
+      }
+      
+      .endBar {
+        border-top: 3vh solid red;
+        background-color: #000617;
+        width: 100vw;
+        height: 20vh;
+        box-shadow: inset 0 0 34px 0px rgba(0,0,124,0.3);
+      }
+      
+      .watermark {
+        border-radius: 10px;
+        padding:1%;
+        font: normal 40px RussoOne;
+        opacity: 0.5;
+        color: cyan;
+        position: fixed;
+        top: 2%;
+        left: 60%;
+        backdrop-filter: blur(40px);
+        user-select: none;
+      }
+      
+      #videoBg{
+        padding:0;
+        margin:0;
+        position: relative;
+        right: -50%;
+        bottom: 10%;
+        width: 1px;
+        height: 1px;
+        z-index: 0;
+        opacity: 80%;
+      }
