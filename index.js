@@ -45,7 +45,9 @@ let Tracks = [new Audio('music/DiscoZombiItalia.mp3'),
               new Audio('music/MondayHunt.mp3'),
               new Audio('music/DivisionRuine.mp3'),
               new Audio('music/RollerMobster.mp3'),
-              new Audio('music/TurboKiller.mp3')
+              new Audio('music/TurboKiller.mp3'),
+              new Audio('music/YoureMine.mp3'),
+              new Audio('music/EndTitles.mp3')
              ];
 
 let TracksDurs=[];
@@ -64,16 +66,20 @@ let TracksNames = ["Disco Zombi Italia",
                    "Monday Hunt",
                    "Division Ruine",
                    "Roller Mobster",
-                   "Turbo Killer"
+                   "Turbo Killer",
+                   "You're Mine",
+                   "End Titles"
                   ];
 
 let TracksIcons = ["cp-ep2.jpg",
                    "cp-ep1.jpg",
                    "cp-ep3.jpg",
                    "cp-lt.jpg",
+                   "cp-ep3.jpg",
                    "cp-ep2.jpg",
-                   "cp-ep2.jpg",
-                   "cp-ep3.jpg"
+                   "cp-ep3.jpg",
+                   "furi.jpg",
+                   "cp-lt.jpg"
                   ];
                   
 let currentTrack=0;
@@ -87,12 +93,14 @@ function getPosition(element){
 }      
 
 let mX;
+let mY;
 (function() {
     document.onmousemove = handleMouseMove;
 
     function handleMouseMove(event) {
         event = event || window.event;
         mX=event.clientX;
+        mY=event.clientY;
     }
 })();
 
@@ -133,10 +141,51 @@ function slideBTNMov(x,align=false,trackMov=true,ratio=false){
     }else{console.log("NoWORK")}
 }
 
+let clkSlideVertRBTN=false;
+let maxvertR;
+function slideVertBTNMov(x,align=false,trackMov=true,ratio=false){
+    var s = document.getElementById('slideVertRLine');
+    var e = document.getElementById('slideRBTN');
+    var pos;
+
+    max = s.clientHeight-e.clientHeight;
+
+    if(align){
+        var lineY = getPosition(s).y;
+        pos = x-lineY;
+    }else if(ratio){
+        pos = y * max;
+    }else{
+        pos = y;
+    }
+    if(pos>max)pos=max;
+    if(pos<0)pos=0;
+
+    e.style.transform='translatey('+28+'px)';
+
+    console.log((pos/max)*100+"%");
+
+    if(clkSlideBTN){
+        // Tracks[currentTrack].currentTime=maxDur*(pos/max);
+        clkSlideVertRBTN=false;
+    }else{console.log("NoWORKVertR")}
+}
+
 function clickSlideBTN(){
     var e = document.getElementById('slideBTN');
     clkSlideBTN=true;
     setTimeout(slideBTNMov(mX,true),0);
+}
+
+function clickSlideVertLBTN(){
+    var e = document.getElementById('slideLBTN');
+    // clkSlideBTN=true;
+    // setTimeout(slideBTNMov(mX,true),0);
+}
+function clickSlideVertRBTN(){
+    var e = document.getElementById('slideRBTN');
+    clkSlideVertRBTN=true;
+    setTimeout(slideBTNMov(mY,true),0);
 }
 
 function alignCrntTime(){
@@ -239,20 +288,14 @@ function chngImg(index=0){
     var e = document.getElementById("musicPlayerImgMain");
     var h = document.getElementById("musicPlayerImgHolo");
     
-    h.style.backgroundImage="url("+TracksIcons[index]+")";
-   
-    // e.style.opacity="0%";
+    h.style.backgroundImage="url("+TracksIcons[currentTrack]+")";
     e.style.animation="imgChangeAnim .6s 1 forwards";
 
     setTimeout(function(){
-    e.src=TracksIcons[index];
-                        e.style.animation="none";
-                        e.src=TracksIcons[index];
-
-                        },600);
-    
-    
-    
+        e.src=TracksIcons[currentTrack];
+        e.style.animation="none";
+        e.src=TracksIcons[currentTrack];
+    },600);
 }
 
 function start(){

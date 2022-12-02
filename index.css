@@ -82,7 +82,7 @@
       @keyframes imgChangeAnim {
         0%    {opacity:100%}
         33%   {opacity:30%;filter: blur(2px);}
-        100%  {filter: blur(0px);opacity:100%}
+        100%  {filter: blur(0px);opacity:0%}
       }
       
       @keyframes slideMov {
@@ -108,12 +108,12 @@
       
       .txtMiddleH1{
         color: #0afff7;
-        font: normal 60px RussoOne;
+        font: normal 3vw RussoOne;
       }
       
       .centerMiddle{
         color: white; 
-        font: normal 30px Raleway;
+        font: normal 1.5vw Raleway;
       }
 
       .logoBar {
@@ -129,7 +129,7 @@
       }
 
       .buttonBar {
-        font: normal 10px Syncopate;
+        font: normal 0.6vw Syncopate;
         color: white;
         padding-left: 5vw;
         padding-right: 5vw;
@@ -171,7 +171,7 @@
         padding-right: 5vw;
         display: flex;
         align-items: center;
-        font: normal 10px RussoOne;
+        font: normal 0.6vw RussoOne;
       }
       
       .siteBar:hover {
@@ -202,7 +202,7 @@
       }
 
       .middlebarButtonA {
-        font: normal 20px SairaCond-Med;
+        font: normal 1.2vw SairaCond-Med;
         border-color: transparent;
         height: 5vh;
         width: 8vw;
@@ -219,7 +219,7 @@
       }
 
       .middlebarButtonB {
-        font: normal 20px SairaCond-Med;
+        font: normal 1.2vw SairaCond-Med;
         border-radius: 6px;
         border-color: transparent;
         height: 5vh;
@@ -242,7 +242,7 @@
       }
 
       .mainBar {
-        font: normal 20px NewsCycle-Reg;
+        font: normal 1.2vw NewsCycle-Reg;
         height: auto;
         width: 100vw;
         background-color: #d5e3f7;   
@@ -263,25 +263,25 @@
       }
 
       .mainGridColumnArticle {
-        font: normal 40px SairaCond-Med;
+        font: normal 2.4vw SairaCond-Med;
         display: inline-block;
       }
         
       .mainAdditonArticle {
         color: cyan;
-        font: normal 40px SairaCond-Med;
+        font: normal 2.4vw SairaCond-Med;
         display: inline-block;
       }
     
       .mainAdditonArticleRed {
         color: red;
-        font: normal 40px SairaCond-Med;
+        font: normal 2.4vw SairaCond-Med;
         display: inline-block;
       }
       
       .mainAdditonArticleWhite {
         color: white;
-        font: normal 40px SairaCond-Med;
+        font: normal 2.4vw SairaCond-Med;
         display: inline-block;
       }
       .mainContainerArticle {
@@ -474,7 +474,7 @@
         box-shadow: 8px 8px 20px black;
         overflow: hidden;
         color: white;
-        font: normal 40px SairaCond-Med;
+        font: normal 2.4vw SairaCond-Med;
         display : table-cell;
         vertical-align: middle;
         text-align: center;
@@ -506,7 +506,7 @@
         box-shadow: 8px 8px 20px black;
         overflow: hidden;
         color: white;
-        font: normal 40px SairaCond-Med;
+        font: normal 2.4vw SairaCond-Med;
         text-align: center;
         display : table-cell;
         vertical-align: middle;
@@ -559,7 +559,7 @@
         box-shadow: 8px 8px 20px black;
         overflow: hidden;
         text-align: center;
-        font-size: 30px;
+        font-size: 1.8vw;
         z-index: 98;
 
       }
@@ -611,7 +611,7 @@
         height: 2vh;
         position:relative;
         z-index: 100;
-        top:-3vh;
+        top:-3.3vh;
         box-shadow: inset 0 0 4px 1px rgba(0,0,0,0.55);
       }
       
@@ -623,7 +623,7 @@
         display: table-cell;
         position: relative;
         z-index: 98;
-        padding-left:1vh;
+        padding:1vh;
       }
       
       .verticalSlideLine {
@@ -632,18 +632,18 @@
         width: 1vh;
         height: 100%;
         display: inline-block;
-/*         text-align: middle; */
+/*      text-align: middle; */
         box-shadow: 0px 0px 16px 7px rgba(200, 0, 205, .45);
       }
 
       .verticalSlideButton {
         border-radius: 45%;
         background-color: red;
-        width: 22vh;
-        height: 22vh;
+        width: 2vh;
+        height: 2vh;
         position:relative;
         z-index: 100;
-/*         top:-3vh; */
+        left:-0.4vh;
         box-shadow: inset 0 0 4px 1px rgba(0,0,0,0.55);
       }
       
@@ -658,7 +658,7 @@
       .watermark {
         border-radius: 10px;
         padding:1%;
-        font: normal 40px RussoOne;
+        font: normal 2.4vw RussoOne;
         opacity: 0.5;
         color: cyan;
         position: fixed;
