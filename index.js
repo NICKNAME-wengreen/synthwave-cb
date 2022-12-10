@@ -143,32 +143,64 @@ function slideBTNMov(x,align=false,trackMov=true,ratio=false){
 
 let clkSlideVertRBTN=false;
 let maxvertR;
-function slideVertBTNMov(x,align=false,trackMov=true,ratio=false){
+function slideVertRBTNMov(x,align=false,trackMov=true,ratio=false){
     var s = document.getElementById('slideVertRLine');
     var e = document.getElementById('slideRBTN');
     var pos;
 
-    max = s.clientHeight-e.clientHeight;
+    maxvertR = s.clientHeight-e.clientHeight;
 
     if(align){
         var lineY = getPosition(s).y;
         pos = x-lineY;
     }else if(ratio){
-        pos = y * max;
+        pos = y * maxvertR;
     }else{
         pos = y;
     }
-    if(pos>max)pos=max;
+
+    if(pos>maxvertR)pos=maxvertR;
     if(pos<0)pos=0;
 
-    e.style.transform='translatey('+28+'px)';
+    e.style.transform='translatey('+pos+'px)';
 
-    console.log((pos/max)*100+"%");
+    console.log((pos/maxvertR)*100+"%");
 
-    if(clkSlideBTN){
+    if(clkSlideVertRBTN){
         // Tracks[currentTrack].currentTime=maxDur*(pos/max);
         clkSlideVertRBTN=false;
     }else{console.log("NoWORKVertR")}
+}
+
+let clkSlideVertLBTN=false;
+let maxvertL;
+function slideVertLBTNMov(x,align=false,trackMov=true,ratio=false){
+    var s = document.getElementById('slideVertLLine');
+    var e = document.getElementById('slideLBTN');
+    var pos;
+
+    maxvertL = s.clientHeight-e.clientHeight;
+
+    if(align){
+        var lineY = getPosition(s).y;
+        pos = x - lineY;
+    }else if(ratio){
+        pos = y * maxvertL;
+    }else{
+        pos = y;
+    }
+
+    if(pos>maxvertL)pos=maxvertL;
+    if(pos<0)pos=0;
+
+    e.style.transform='translatey('+pos+'px)';
+
+    console.log((pos/maxvertL)*100+"%");
+
+    if(clkSlideVertLBTN){
+        // Tracks[currentTrack].currentTime=maxDur*(pos/max);
+        clkSlideVertLBTN=false;
+    }else{console.log("NoWORKVertL")}
 }
 
 function clickSlideBTN(){
@@ -178,14 +210,14 @@ function clickSlideBTN(){
 }
 
 function clickSlideVertLBTN(){
-    var e = document.getElementById('slideLBTN');
-    // clkSlideBTN=true;
-    // setTimeout(slideBTNMov(mX,true),0);
+    // var e = document.getElementById('slideLBTN');
+    clkSlideVertLBTN=true;
+    setTimeout(slideVertLBTNMov(mY,true),0);
 }
 function clickSlideVertRBTN(){
-    var e = document.getElementById('slideRBTN');
+    // var e = document.getElementById('slideRBTN');
     clkSlideVertRBTN=true;
-    setTimeout(slideBTNMov(mY,true),0);
+    setTimeout(slideVertRBTNMov(mY,true),0);
 }
 
 function alignCrntTime(){
@@ -197,9 +229,9 @@ function alignCrntTime(){
 
     dc.innerHTML = minutes+":"+seconds;
     slideBTNMov(Math.floor((crntDur/maxDur)*max));
-    
+
     // console.log("|"+Math.floor((crntDur/maxDur)*max)+'px');
-    
+
     if(crntDur==maxDur){
         stopPressed=false;
         stopPress();
@@ -250,10 +282,38 @@ document.getElementById('slideBTN').onpointerdown = function(){
     holdenBTN=true
     holdBTN=window.setInterval(function(){slideBTNMov(mX-10,true,false);},0);
 };
-    
+
+let holdenBTNvL=true;
+document.getElementById('slideLBTN').onpointerdown = function(){
+    console.log("BTN_HOLDEN");
+    clearInterval(holdBTN);
+    holdenBTNvL=true
+    holdBTN=window.setInterval(function(){slideVertLBTNMov(mY-10,true,false);},0);
+};
+
+let holdenBTNvR=true;
+document.getElementById('slideRBTN').onpointerdown = function(){
+    console.log("BTN_HOLDEN");
+    clearInterval(holdBTN);
+    holdenBTNvR=true
+    holdBTN=window.setInterval(function(){slideVertRBTNMov(mY-10,true,false);},0);
+};
+
+document.body.onkeyup = function(e){
+    if(e.keyCode == 32){
+        stopPress();
+    }else
+    if(e.keyCode == 39){
+        chngTrack(0,'next');
+    }else
+    if(e.keyCode == 37){
+        chngTrack(0,'prev');
+    }
+}
+
 document.addEventListener("mouseup", function(){
     console.log("UNHOLDEN");
-    if(holdenBTN){
+    if(holdenBTN||holdenBTNvL||holdenBTNvR){
         clearInterval(holdBTN);
         holdenBTN=false;
         
@@ -303,7 +363,9 @@ function start(){
     collectDurs();
     var e = document.getElementById('videoBg');
     var m = document.getElementById('musicPlayer');
-    console.log("X"+m.clientWidth+"|Y"+m.clientHeight);
-    e.style.transform = "translatex(-40px) translatey(-199px) scalex("+m.clientWidth+") scaley("+m.clientHeight+")";
+    console.log("X"+window.screen.availWidth+"|Y"+window.screen.availHeight);
+    console.log("vbgX"+m.clientWidth/e.clientWidth
+              + "|vbgY"+m.clientHeight/e.clientHeight);
+    e.style.transform = "scalex("+108+") scaley("+(675.5/9)+")";
 }
 window.onload = start;

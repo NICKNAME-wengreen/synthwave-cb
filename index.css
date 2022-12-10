@@ -139,13 +139,13 @@
       }
       
       .buttonBarBtn {
-        font: normal 200% Syncopate;
+        font: normal 1.2vw Syncopate;
         color: white;
         padding-left: 1vw;
         padding-right: 1vw;
         border: none;
         background-color: inherit;
-        padding: 14px 28px;
+        padding: 0.729vw 1.458vw;
         cursor: pointer;
         display: inline-block;
         user-select: none;
@@ -306,7 +306,7 @@
       }
       
       .mainAdditionA {
-        font: normal 25px Jost-VariableFont;
+        font: normal 1.4vw Jost-VariableFont;
         color: white;
         border-radius: 12px;
         background-color: #141412;
@@ -616,7 +616,7 @@
       }
       
       .verticalSlide {
-        border-radius: 4px;
+        border-radius: 0.2vw;
         background-color: rgba(110,0,0,1);
         width: 3vh;
         height: 100%;
@@ -627,7 +627,7 @@
       }
       
       .verticalSlideLine {
-        border-radius: 4px;
+        border-radius: 0.2vw  ;
         background-color: rgba(256,256,256,1);
         width: 1vh;
         height: 100%;
@@ -671,11 +671,11 @@
       #videoBg{
         padding:0;
         margin:0;
-        position: relative;
-        right: -50%;
-        bottom: 10%;
-        width: 1px;
-        height: 1px;
+        position: absolute;
+        right: 44.58vw;
+        bottom: 34.5vh;
+        width: 0.83383333333vw;
+        height: 0.9333333333vh;
         z-index: 0;
         opacity: 80%;
       }
