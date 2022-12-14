@@ -108,7 +108,6 @@ let mY;
 let clkSlideBTN=false;
 let maxDur;
 let max;
-let slidePercent=0;
 function slideBTNMov(x,align=false,trackMov=true,ratio=false){
     var s = document.getElementById('slideLine');
     var e = document.getElementById('slideBTN');
@@ -126,17 +125,22 @@ function slideBTNMov(x,align=false,trackMov=true,ratio=false){
     }
     if(pos>max)pos=max;
     if(pos<0)pos=0;
-
-    slidePercent = pos/max;
-
-    console.log(" [SlidePercent = " + slidePercent + " ] ");
-
+    /*
+    // document.documentElement.style.setProperty('--slideMovAnimX',"blue");
+    e.style.animation='slideMov 1.5 1 forwards';
+    setTimeout(function(){
+                        e.style.animation="none";
+                        },1600);
+    */
     e.style.transform='translatex('+pos+'px)';
-
+    
+    // console.log((pos/max)*100+"%");
+    
     if(clkSlideBTN){  
         Tracks[currentTrack].currentTime=maxDur*(pos/max);
         clkSlideBTN=false;
     }
+    // else{console.log("NoWORK")}
 }
 
 let clkSlideVertRBTN=false;
@@ -168,9 +172,11 @@ function slideVertRBTNMov(y,align=false,trackMov=true,ratio=false){
     Tracks[currentTrack].volume=audioVolume;
 
     if(clkSlideVertRBTN){
+        // Tracks[currentTrack].currentTime=maxDur*(pos/maxvertR);
         Tracks[currentTrack].volume=audioVolume;
         clkSlideVertRBTN=false;
     }
+    // else{console.log("NoWORKVertR")}
 }
 
 let clkSlideVertLBTN=false;
@@ -199,8 +205,10 @@ function slideVertLBTNMov(x,align=false,trackMov=true,ratio=false){
     console.log((pos/maxvertL)*100+"%");
 
     if(clkSlideVertLBTN){
+        // Tracks[currentTrack].currentTime=maxDur*(pos/max);
         clkSlideVertLBTN=false;
     }
+    // else{console.log("NoWORKVertL")}
 }
 
 function clickSlideBTN(){
@@ -241,23 +249,11 @@ function alignCrntTime(){
     }
 }
 
-let notStopBTN=false;
 let holdBTN;
 let stopPressed = true;
-let stopPressedAnim;
 function stopPress(){
     var e = document.getElementById('stopBTN');
     var article = document.getElementById('trackArticle');
-
-    if(!notStopBTN){
-        e.style.animation = "none";
-        e.style.animation = "MinoraPlayerStopButton .6s 1 forwards";
-
-        // clearTimeout(stopPressedAnim);
-        stopPressedAnim = setTimeout(function(){
-                            e.style.animation="none";
-                            },600);
-    }else notStopBTN = false;
 
     if(stopPressed){
         maxDur = TracksDurs[currentTrack];
@@ -280,11 +276,11 @@ function stopPress(){
         }
         ,1000);
         
-        e.src = "pauseIcon.svg";
+        e.src= "pauseIcon.svg";
         stopPressed=false;
     }else{
         Tracks[currentTrack].pause();
-        e.src = "playIcon.svg";
+        e.src= "playIcon.svg";
         stopPressed=true;
     }
 }
@@ -357,8 +353,10 @@ document.addEventListener("mouseup", function(){
         
         alignCrntTime();
         holdBTN = window.setInterval(function(){
+            // if(holdenBTNvR)Tracks[currentTrack].volume=audioVolume;
             if(!holdenBTN){
                 alignCrntTime();
+                // console.log("HERE!!"+holdenBTN);
             }
         }
         ,1000);
@@ -366,41 +364,13 @@ document.addEventListener("mouseup", function(){
     }
 });
 
-let nextBTNPressedAnim;
-let prevBTNPressedAnim;
 function chngTrack(index,direction=null){
-    notStopBTN = true;
-
     Tracks[currentTrack].load();
 
-    if(direction=='next'){
-        if(currentTrack<Tracks.length-1){
-            currentTrack++;console.log('NEXT');
-        }
-
-        var e = document.getElementById('nextBTN');
-
-        e.style.animation = "none";
-        e.style.animation = "MinoraPlayerNextButton .4s 1 forwards";
-
-        clearTimeout(nextBTNPressedAnim);
-        nextBTNPressedAnim = setTimeout(function(){
-                            e.style.animation="none";
-                            },400);
-    }else if(direction=='prev'){
-        if(currentTrack>0){
-            currentTrack--;console.log('PREV');
-        }
-
-        var e = document.getElementById('prevBTN');
-
-        e.style.animation = "none";
-        e.style.animation = "MinoraPlayerPrevButton .4s 1 forwards";
-
-        clearTimeout(prevBTNPressedAnim);
-        prevBTNPressedAnim = setTimeout(function(){
-                            e.style.animation="none";
-                            },400);
+    if(direction=='next'&&currentTrack<Tracks.length-1){
+        currentTrack++;console.log('NEXT');
+    }else if(direction=='prev'&&currentTrack>0){
+        currentTrack--;console.log('PREV');
     }else if(direction=null){
         currentTrack=index;
     }
@@ -425,10 +395,12 @@ function chngImg(index=0){
 function scaleMusicPlayer(){
     var e = document.getElementById('videoBg');
     var m = document.getElementById('musicPlayer');
-    console.log("|X: "+1920/window.screen.availWidth+"|Y: "+1080/window.screen.availHeight);
-
-    e.style.width = m.clientWidth + "px";
-    e.style.height = m.clientHeight + "px";
+    console.log("X"+window.screen.availWidth+"|Y"+window.screen.availHeight);
+    console.log("vbgX"+m.clientWidth/e.clientWidth
+              + "|vbgY"+m.clientHeight/e.clientHeight);
+    // e.style.transform = "scalex("+(m.clientWidth/16)+") scaley("+(m.clientHeight/9)+")";
+    e.style.transform = "scalex("+(Math.ceil(m.clientWidth)/e.clientWidth)+
+                      ") scaley("+(Math.ceil(m.clientHeight)/e.clientHeight)+")";
 }
 
 function isInViewport(element) {
@@ -454,7 +426,6 @@ window.addEventListener("keydown", function(e) {
 }, false);
 
 window.onresize = function (event) {
-    slideBTNMov(slidePercent,false,true,true);
     scaleMusicPlayer();
 }
 

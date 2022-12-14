@@ -173,15 +173,15 @@ function shootSound() {
 function jumpSound() {
   soundEffect(
     523.25,       //frequency
-    0.05,         //attack
-    0.2,          //decay
+    0.15,         //attack
+    1.2,          //decay
     "sine",       //waveform
     3,            //volume
     0.8,          //pan
     0,            //wait before playing
-    600,          //pitch bend amount
+    0,          //pitch bend amount
     true,         //reverse
-    100,          //random pitch range
+    0,          //random pitch range
     0,            //dissonance
     undefined,    //echo: [delay, feedback, filter]
     undefined     //reverb: [duration, decay, reverse?]

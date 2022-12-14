@@ -89,8 +89,58 @@
         0%    {background-color: pink;}
         100%  {background-color: blue;}
       }
-      
-      
+
+      @keyframes MinoraPlayerStopButton {
+        33%   {
+              transform: scale(0.97);
+              filter: drop-shadow(0.1vw 0.1vw 0.4vw rgb(210 210 210 / 0.85));
+              }
+        90%   {
+              transform: scale(1);
+              filter: drop-shadow(0.1vw 0.1vw 0.4vw rgb(210 210 210 / 0.65));
+              }
+        100%  {
+              transform: scale(1);
+              filter: drop-shadow(0.1vw 0.1vw 0.4vw rgb(0 0 0 / 1));
+              }
+      }
+
+      @keyframes MinoraPlayerPrevButton {
+        0%    {
+              filter: drop-shadow(0.1vw 0.1vw 0.4vw rgb(210 210 210 / 0.8));
+              }
+        33%   {
+              transform: scalex(-1) translatex(-14.8%);
+              filter: drop-shadow(0.1vw 0.1vw 0.4vw rgb(210 210 210 / 0.95));
+              }
+        78%   {
+              transform: scalex(-1) translatex(-13%);
+              filter: drop-shadow(0.1vw 0.1vw 0.4vw rgb(210 210 210 / 0.85));
+              }
+        100%  {
+              transform: scalex(-1) translatex(-18%);
+              filter: drop-shadow(0.1vw 0.1vw 0.4vw rgb(210 210 210 / 0.65));
+              }
+      }
+
+      @keyframes MinoraPlayerNextButton {
+        0%    {
+              filter: drop-shadow(0.1vw 0.1vw 0.4vw rgb(210 210 210 / 0.8));
+              }
+        33%   {
+              transform: translatex(-17.8%);
+              filter: drop-shadow(0.1vw 0.1vw 0.4vw rgb(210 210 210 / 0.95));
+              }
+        78%   {
+              transform: translatex(-16%);
+              filter: drop-shadow(0.1vw 0.1vw 0.4vw rgb(210 210 210 / 0.85));
+              }
+        100%  {
+              transform: translatex(-21%);
+              filter: drop-shadow(0.1vw 0.1vw 0.4vw rgb(210 210 210 / 0.65));
+              }
+      }
+
       html, body {
         font: normal 10px Raleway;
         max-width: 100%;
@@ -289,13 +339,15 @@
       }
       
       .mainGridColumn {
-        border-radius: 12px;
+        border-radius: 1vh;
         padding: 3%;
         width: 50%;
         height: auto;
-        width: 50%;
         max-width: 55%;
         max-height: 55%;
+        overflow: hidden;
+        display: flex;
+        flex-wrap: wrap;
       }
       
       .mainGridColumn:hover {
@@ -338,7 +390,7 @@
         min-height: 40vw;
         max-width: 40vw;
         max-height: 40vw;
-        border-radius: 10px;  
+        border-radius: 0.925vh;
         background-image: url(carpBrutTrilogy.jpg);
         background-repeat: no-repeat;
         background-size: 100% 100%;
@@ -346,7 +398,7 @@
         padding-bottom: 1vh;
         margin-top: auto;
         margin-bottom: auto;
-        box-shadow: 8px 8px 10px black;
+        box-shadow: 0.37vh 0.37vh 0.925vh black;
       }
 
       .mainAdditionAImageHLM2 {
@@ -354,7 +406,7 @@
         min-height: 45vh;
         max-width: 40vw;
         max-height: 45vh;
-        border-radius: 10px;  
+        border-radius: 0.925vh;
         background-image: url(hlm2bg.jpg);
         background-repeat: no-repeat;
         background-size: 100% 100%;
@@ -362,7 +414,7 @@
         padding-bottom: 1vh;
         margin-top: auto;
         margin-bottom: auto;
-        box-shadow: 8px 8px 10px black;
+        box-shadow: 0.37vh 0.37vh 0.925vh black;
       }
       
       .mainAdditionAImageLeatherTeeth {
@@ -370,7 +422,7 @@
         min-height: 40vw;
         max-width: 40vw;
         max-height: 40vw;
-        border-radius: 10px;  
+        border-radius: 0.925vh;
         background-image: url(cp-lt.jpg);
         background-repeat: no-repeat;
         background-size: 100% 100%;
@@ -378,7 +430,8 @@
         padding-bottom: 1vh;
         margin-top: auto;
         margin-bottom: auto;
-        box-shadow: 8px 8px 10px black;
+        box-shadow: 0.37vh 0.37vh 0.925vh black;
+        overflow: hidden;
       }
 
       #bgImgA{
@@ -392,10 +445,10 @@
         position: relative;
         width: 8%;
         height: 8%;
-        box-shadow: 0px 0.3vh 3px black;
-        border-radius: 40px;
+        box-shadow: 0vh 0.3vh 0.3vh black;
+        border-radius: 3.7vh;
         user-select: none;
-        filter: invert(30%) blur(3px) opacity(80%);
+        filter: invert(30%) blur(0.3vh) opacity(80%);
       }
 
       .circleButton:hover {
@@ -414,24 +467,35 @@
 
       .spacefiller {
         width: auto;
-        height: 38vh;
+        height: 1vh;
         background-color:transparent; 
+        overflow: hidden;
       }
 
       .musicPlayer {
         position:relative;
         margin-top: 5%;
-        padding:1%;
-        border-radius: 10px;
+        border-radius: 1vh;
         background-color: #fc03a9;
         width: auto;
         height: 70vh;
-        box-shadow: 8px 8px 20px black;
+        box-shadow: 0.74vh 0.74vh 1.85vh black;
+        user-select: none;
+        overflow: hidden;
+        z-index: 90;
+      }
+
+      .musicPlayerBorder {
+        position:relative;
+        padding:1%;
+        width: auto;
+        height: 70vh;
+        box-shadow: 0.74vh 0.74vh 1.85vh black;
         padding-left: 5.5%;
         padding-top: 3%;
         user-select: none;
         overflow: hidden;
-        z-index: 97;
+        z-index: 92;
       }
       
       .musicPlayerPreview {
@@ -442,14 +506,14 @@
       
       .musicPlayerImg {
         position:relative;
-        border-radius: 4px;
+        border-radius: 0.37vh;
         background-color: #db60b2;
         background-image: url(cp-lt3.jpg);
         background-repeat: no-repeat;
         background-size: 100% 100%;
         width: 40vh;
         height: 40vh;
-        box-shadow: 8px 8px 20px black;
+        box-shadow: 0.74vh 0.74vh 1.85vh black;
         margin-bottom: 10%;
         overflow: hidden;
         z-index: 99;
@@ -457,21 +521,21 @@
 
       .musicPlayerImgMain {
         position:relative;
-        border-radius: 4px;
+        border-radius: 0.37vh;
         width: 40vh;
         height: 40vh;
-        box-shadow: 8px 8px 20px black;
+        box-shadow: 0.74vh 0.74vh 1.85vh black;
         margin-bottom: 10%;
         z-index: 99;
       }
       
       .musicPlayerImgArticle {
         position:relative;
-        border-radius: 4px;
+        border-radius: 0.37vh;
         background-color: rgba(10,10,10,0.5);
         width: 40vh;
         height: 10vh;
-        box-shadow: 8px 8px 20px black;
+        box-shadow: 0.74vh 0.74vh 1.85vh black;
         overflow: hidden;
         color: white;
         font: normal 2.4vw SairaCond-Med;
@@ -479,31 +543,31 @@
         vertical-align: middle;
         text-align: center;
         z-index: 98;
-        backdrop-filter: blur(10px);
+        backdrop-filter: blur(0.92vh);
       }
       
       .musicPlayerControlPanel{
         position:relative;
-        border-radius: 4px;
+        border-radius: 0.37vh;
         margin-left: 5%;
         background-color: rgba(90,10,90,0.75);
         height: 56vh;
         width: 55vw;
         height: 90%;
-        box-shadow: 8px 8px 20px black;
+        box-shadow: 0.74vh 0.74vh 1.85vh black;
         display: inline-block;
         overflow: hidden;
         padding:2%;
         z-index: 98;
-        backdrop-filter: blur(10px);
+        backdrop-filter: blur(0.92vh);
       }
       
       .musicPlayerTrackArticle {
-        border-radius: 4px;
+        border-radius: 0.37vh;
         background-color: rgba(10,10,10,0.5);
         width: 55vw;
         height: 7vh;
-        box-shadow: 8px 8px 20px black;
+        box-shadow: 0.74vh 0.74vh 1.85vh black;
         overflow: hidden;
         color: white;
         font: normal 2.4vw SairaCond-Med;
@@ -514,11 +578,11 @@
       }
       
       .musicPlayerControlButtons {
-        border-radius: 4px;
+        border-radius: 0.37vh;
         background-color: rgba(120,10,120,0.45);
         width: 51.667vw;
         height: 32vh;
-        box-shadow: 8px 8px 20px black;
+        box-shadow: 0.74vh 0.74vh 1.85vh black;
         overflow: hidden;
         display: flex;
         flex-direction: row;
@@ -532,42 +596,47 @@
         width: 30%;
         height: auto;
         z-index: 99;
+        user-select: none;
+        filter: drop-shadow(0.36vw 0.24vw 0.1vw rgb(0 0 0 / 0.4));
       }
       
       .musicPlayerPrevButton {
+        position: relative;
         width: 30%;
         height: auto;
-        transform: scaleX(-1) translatex(-18%);
+        transform: scalex(-1) translatex(-18%);
         z-index: 99;
+        user-select: none;
+        filter: drop-shadow(0.36vw 0.24vw 0.1vw rgb(0 0 0 / 0.4));
       }
       
       .musicPlayerNextButton {
+        position: relative;
         width: 30%;
         height: auto;
         transform: translatex(-21%);
         z-index: 99;
+        user-select: none;
+        filter: drop-shadow(0.36vw 0.24vw 0.1vw rgb(0 0 0 / 0.4));
       }
       
       .musicPlayerPlate {
-        border-radius: 4px;
+        border-radius: 0.37vh;
         background-color: rgba(10,10,10,0.5);
         width: auto;
         max-height: 6.74vh;
         min-height: 6.74vh;
         max-height: 12%;
         min-height: 12%;
-        box-shadow: 8px 8px 20px black;
+        box-shadow: 0.74vh 0.74vh 1.85vh black;
         overflow: hidden;
         text-align: center;
         font-size: 1.8vw;
         z-index: 98;
-
       }
       
       .musicPlayerTime {
-        border-radius: 4px;
-/*         background-color: black; */
-/*         box-shadow: 2px 2px 15px black; */
+        border-radius: 0.37vh;
         max-width: 4vw;
         max-height: 1vh;
         min-width: 4vw;
@@ -585,23 +654,24 @@
       }
       
       .musicPlayerSlide {
-        border-radius: 4px;
+        border-radius: 0.37vh;
         background-color: rgba(0,0,0,0);
         width: 100%;
         height: 3vh;
         display: table-cell;
         position: relative;
         z-index: 98;
+        filter: drop-shadow(0.1vw 0.34vw 0.1vw rgb(0 0 0 / 0.6));
       }
       
       .musicPlayerSlideLine {
-        border-radius: 4px;
+        border-radius: 0.37vh;
         background-color: rgba(256,256,256,1);
         width: 100%;
         height: 1vh;
         display: inline-block;
         vertical-align: middle;
-        box-shadow: 0px 0px 16px 7px rgba(200, 0, 205, .45);
+        box-shadow: 0vh 0vh 1.481vh 0.648vh rgba(200, 0, 205, .45);
       }
       
       .musicPlayerSlideButton {
@@ -611,29 +681,32 @@
         height: 2vh;
         position:relative;
         z-index: 100;
-        top:-3.3vh;
-        box-shadow: inset 0 0 4px 1px rgba(0,0,0,0.55);
+        top:-3.2vh;
+        box-shadow: inset 0 0 0.37vh 0.1vh rgba(0,0,0,0.55);
+        user-select: none;
       }
       
       .verticalSlide {
-        border-radius: 0.2vw;
-        background-color: rgba(110,0,0,1);
+        border-radius: 1vw;
+        background-color: rgba(110,0,60,0.0);
         width: 3vh;
         height: 100%;
         display: table-cell;
         position: relative;
         z-index: 98;
+        filter: drop-shadow(0.36vw 0.24vw 0.1vw rgb(0 0 0 / 0.6));
         padding:1vh;
       }
       
       .verticalSlideLine {
         border-radius: 0.2vw  ;
-        background-color: rgba(256,256,256,1);
+        background-color: rgba(256,256,256,0.9);
         width: 1vh;
         height: 100%;
         display: inline-block;
 /*      text-align: middle; */
-        box-shadow: 0px 0px 16px 7px rgba(200, 0, 205, .45);
+        filter: drop-shadow(0 0 0.75rem rgba(200, 0, 205, .15));
+        box-shadow: 0vh 0vh 1.481vh 0.648vh rgba(200, 0, 205, .45);
       }
 
       .verticalSlideButton {
@@ -643,8 +716,8 @@
         height: 2vh;
         position:relative;
         z-index: 100;
-        left:-0.4vh;
-        box-shadow: inset 0 0 4px 1px rgba(0,0,0,0.55);
+        left:-0.5vh;
+        box-shadow: inset 0 0 0.37vh 0.1vh rgba(0,0,0,0.55);
       }
       
       .endBar {
@@ -667,15 +740,19 @@
         backdrop-filter: blur(40px);
         user-select: none;
       }
-      
+
       #videoBg{
         padding:0;
         margin:0;
         position: absolute;
-        right: 44.58vw;
-        bottom: 34.5vh;
-        width: 0.83383333333vw;
-        height: 0.9333333333vh;
-        z-index: 0;
+
+
+        width: 1728px;
+        height: 756px;
+
+        object-fit: cover;
+
+
+        z-index: 92;
         opacity: 80%;
       }
