@@ -54,9 +54,8 @@ let TracksDurs=[];
 
 function collectDurs(){
     for(var i=0;i<Tracks.length;i++){
-        console.log(Tracks[i].duration);
         TracksDurs[i]=Tracks[i].duration;
-        console.log(TracksDurs[i]);
+        console.log(TracksNames[i]+" -- "+TracksDurs[i]);
     }
 };
                 
@@ -456,6 +455,14 @@ window.addEventListener("keydown", function(e) {
 window.onresize = function (event) {
     slideBTNMov(slidePercent,false,true,true);
     scaleMusicPlayer();
+}
+
+function checkLoad(){
+    obj.addEventListener('loadeddata', () => {
+        if(obj.readyState >= 2){
+            console.log();
+        }
+    });
 }
 
 window.onload = start;

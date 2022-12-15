@@ -403,9 +403,9 @@
 
       .mainAdditionAImageHLM2 {
         min-width: 40vw;
-        min-height: 45vh;
         max-width: 40vw;
-        max-height: 45vh;
+        min-height: 25vw;
+        max-height: 25vw;
         border-radius: 0.925vh;
         background-image: url(hlm2bg.jpg);
         background-repeat: no-repeat;
