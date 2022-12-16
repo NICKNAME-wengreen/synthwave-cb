@@ -141,6 +141,10 @@
               }
       }
 
+      @keyframes DisapearLoader {
+        100%  {opacity:0%};
+      }
+
       html, body {
         font: normal 10px Raleway;
         max-width: 100%;
@@ -699,7 +703,7 @@
       }
       
       .verticalSlideLine {
-        border-radius: 0.2vw  ;
+        border-radius: 0.2vw;
         background-color: rgba(256,256,256,0.9);
         width: 1vh;
         height: 100%;
@@ -741,18 +745,77 @@
         user-select: none;
       }
 
-      #videoBg{
+      .musicPlayerLoadScreen {
         padding:0;
         margin:0;
         position: absolute;
-
 
         width: 1728px;
         height: 756px;
 
         object-fit: cover;
 
+        z-index: 100;
+
+        background-color: #242126;
+        filter: blur(15.92vh);
+
+        opacity: 80%;
+      }
+
+      .musicPlayerLoadScreenText {
+        padding:0;
+        margin:0;
+        position: absolute;
+
+        width: 1728px;
+        height: 756px;
+
+        object-fit: cover;
+
+        z-index: 100;
+
+        color: white;
+        text-align: center;
+        font: normal 2vw RussoOne;
+
+        opacity: 80%;
+
+        display: flex;
+
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      #videoBg{
+        padding:0;
+        margin:0;
+        position: absolute;
+
+        width: 1728px;
+        height: 756px;
+
+        object-fit: cover;
 
         z-index: 92;
         opacity: 80%;
+      }
+
+      .loader {
+        border: 16px solid #f3f3f3; /* Light grey */
+        border-top: 16px solid #3498db; /* Blue */
+        border-radius: 50%;
+        width: 120px;
+        height: 120px;
+        animation: spin 2s linear infinite;
+      }
+
+      @keyframes spin {
+        0%   {transform: rotate(0deg);
+              filter: drop-shadow(0.1vw 0.1vw 0.4vw rgb(210 210 210 / 0.2));}
+        50%  {transform: rotate(180deg);
+              filter: drop-shadow(0.1vw 0.1vw 0.4vw rgb(210 210 210 / 0.8));}
+        100% {transform: rotate(360deg);
+              filter: drop-shadow(0.1vw 0.1vw 0.4vw rgb(210 210 210 / 0.2));}
       }

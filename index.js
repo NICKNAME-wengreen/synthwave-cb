@@ -52,11 +52,13 @@ let Tracks = [new Audio('music/DiscoZombiItalia.mp3'),
 
 let TracksDurs=[];
 
+let audioLoaded = false;
 function collectDurs(){
     for(var i=0;i<Tracks.length;i++){
         TracksDurs[i]=Tracks[i].duration;
         console.log(TracksNames[i]+" -- "+TracksDurs[i]);
     }
+    audioLoaded = true;
 };
                 
 let TracksNames = ["Disco Zombi Italia",
@@ -312,8 +314,9 @@ document.getElementById('slideRBTN').onpointerdown = function(){
     holdBTN=window.setInterval(function(){slideVertRBTNMov(mY-10,true,true);},0);
 };
 
+let MusicPlayerDataLoaded = false;
 document.body.onkeyup = function(e){
-    if(isInViewport(document.getElementById('musicPlayer'))){
+    if(isInViewport(document.getElementById('musicPlayer'))&&MusicPlayerDataLoaded){
         if(e.keyCode == 32){
             stopPress();
         }else
@@ -441,8 +444,9 @@ function isInViewport(element) {
 }
 
 function start(){
-    chngImg(0);
+    checkLoad();
     collectDurs();
+    chngImg(0);
     scaleMusicPlayer();
 }
 
@@ -457,12 +461,37 @@ window.onresize = function (event) {
     scaleMusicPlayer();
 }
 
+let videoLoaded=false;
+var videoBgObj = document.getElementById('videoBg');
+videoBgObj.addEventListener('loadeddata', () => {
+    if(videoBgObj.readyState >= 2){
+        console.log("Video is loaded!");
+        videoLoaded = true;
+    }
+});
+
+let loadChecker;
 function checkLoad(){
-    obj.addEventListener('loadeddata', () => {
-        if(obj.readyState >= 2){
-            console.log();
+    loadChecker = setInterval(function(){
+        if(videoLoaded && audioLoaded){
+            MusicPlayerDataLoaded = true;
+            console.log("All MetaData is loaded!");
+            clearInterval(loadChecker);
+
+            var la = document.getElementById('loadScreen');
+            var lb = document.getElementById('loadScreenCtx');
+
+            la.style.animation="DisapearLoader 1.6s 1 forwards";
+            lb.style.animation="DisapearLoader 1.6s 1 forwards";
+
+            setTimeout(function(){
+                la.style.animation="none";
+                lb.style.animation="none";
+                la.remove();
+                lb.remove();
+            },1600);
         }
-    });
+    },0);
 }
 
 window.onload = start;

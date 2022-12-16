@@ -176,7 +176,14 @@
       </div>
       
       <div class="musicPlayer" id="musicPlayer">
-              <video autoplay muted loop id="videoBg"><source src="bg.mp4" type="video/mp4"></video>
+        <div class="musicPlayerLoadScreen" id="loadScreen"></div>
+
+        <div class="musicPlayerLoadScreenText" id="loadScreenCtx">
+          <div class="loader"></div>
+          <span>Loading...</span>
+        </div>
+
+        <video autoplay muted loop id="videoBg"><source src="bg.mp4" type="video/mp4"></video>
         <div class="musicPlayerBorder">
         <div class="musicPlayerPreview">
           <div class="musicPlayerImg" id="musicPlayerImgHolo">
