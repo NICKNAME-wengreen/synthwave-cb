@@ -52,13 +52,11 @@ let Tracks = [new Audio('music/DiscoZombiItalia.mp3'),
 
 let TracksDurs=[];
 
-let audioLoaded = false;
 function collectDurs(){
     for(var i=0;i<Tracks.length;i++){
         TracksDurs[i]=Tracks[i].duration;
         console.log(TracksNames[i]+" -- "+TracksDurs[i]);
     }
-    audioLoaded = true;
 };
                 
 let TracksNames = ["Disco Zombi Italia",
@@ -485,12 +483,31 @@ videoBgObj.addEventListener('loadeddata', () => {
     }
 });
 
-setInterval(function(){
-    console.log(Tracks[4].readyState);
-},0);
+let audioLoaded = false;
+let audioCheckInterval;
+function checkAudioLoad(){
+    var i = 0;
+    console.log("Enterance Audio");
+    var tempIndxArray;
+        audioCheckInterval = setInterval(function(){
+            var sumStts=0;
+            Tracks.forEach(e => {
+                console.log(" < " + (i%Tracks.length+1) + " | " + TracksNames[i%Tracks.length] + " > = " + e.readyState);
+                i++;sumStts+=e.readyState;
+            })
+
+            if(sumStts>=(Tracks.length*4)){
+                clearInterval(audioCheckInterval);
+                console.log("All Audio Loaded!");
+                audioLoaded = true;
+            }
+        },0);
+}
 
 let loadChecker;
 function checkLoad(){
+    checkAudioLoad();
+
     loadChecker = setInterval(function(){
         if(videoLoaded && audioLoaded){
             MusicPlayerDataLoaded = true;
@@ -506,8 +523,8 @@ function checkLoad(){
             setTimeout(function(){
                 la.style.animation="none";
                 lb.style.animation="none";
-                // la.remove();
-                // lb.remove();
+                la.remove();
+                lb.remove();
             },1600);
         }
     },0);
