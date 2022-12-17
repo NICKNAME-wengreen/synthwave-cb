@@ -474,15 +474,54 @@ window.onresize = function (event) {
     scaleMusicPlayer();
 }
 
+let imagesLoaded=false;
+let imagesCheckInterval;
+function checkImagesLoad(){
+    let imageLoads = ["cp-ep1.jpg",
+                      "cp-ep2.jpg",
+                      "cp-ep3.jpg",
+                      "cp-lt.jpg",
+                      "furi.jpg",
+                     ];
+
+    // var imagesLoad = [];
+
+    imageLoads.forEach(e => {
+        var img = new Image();
+        img.src = e;
+        // imagesLoad.push(img);
+    });
+
+    console.log("ImageCount "+imageLoads.length);
+    console.log("Images is loaded!");
+
+    // var sumStts=0;
+    // var i=0;
+    //
+    // imagesCheckInterval = setInterval(function(){
+    //     imagesLoad.forEach(e => {
+    //         console.log(" ["+imageLoads[i%imagesLoad.length]+"]> = " + imagesLoad[1].readyState);
+    //         sumStts+=e.readyState;
+    //         i++;
+    //     });
+
+        // if(sumStts>=(imagesLoad.length*4)){
+        //     clearInterval(imagesCheckInterval);
+        //     console.log("All Image Loaded!");
+            imagesLoaded = true;
+    //     }
+    // },0);
+}
+
 let videoLoaded=false;
-let videoBgInterval;
+let videoCheckInterval;
 function checkVideoLoad(){
     var videoBgObj = document.getElementById('videoBg');
-    videoBgInterval = setInterval(function(){
+    videoCheckInterval = setInterval(function(){
         if(videoBgObj.readyState >= 2){
             console.log("Video is loaded!");
             videoLoaded = true;
-            clearInterval(videoBgInterval);
+            clearInterval(videoCheckInterval);
         }
     },0);
 }
@@ -491,7 +530,6 @@ let audioLoaded = false;
 let audioCheckInterval;
 function checkAudioLoad(){
     var i = 0;
-    console.log("Enterance Audio");
     var tempIndxArray;
         audioCheckInterval = setInterval(function(){
             var sumStts=0;
@@ -510,6 +548,7 @@ function checkAudioLoad(){
 
 let loadChecker;
 function checkLoad(){
+    checkImagesLoad();
     checkAudioLoad();
     checkVideoLoad();
 
