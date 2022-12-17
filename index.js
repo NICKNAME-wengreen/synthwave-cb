@@ -426,11 +426,25 @@ function chngImg(index=0){
 
 function scaleMusicPlayer(){
     var e = document.getElementById('videoBg');
-    var m = document.getElementById('musicPlayer');
+    var mp = document.getElementById('musicPlayer');
+
+    var la = document.getElementById('loadScreen');
+    var lb = document.getElementById('loadScreenCtx');
+
     console.log("|X: "+1920/window.screen.availWidth+"|Y: "+1080/window.screen.availHeight);
 
-    e.style.width = m.clientWidth + "px";
-    e.style.height = m.clientHeight + "px";
+    e.style.width = mp.clientWidth + "px";
+    e.style.height = mp.clientHeight + "px";
+
+    la.style.width = mp.clientWidth + "px";
+    lb.style.width = mp.clientWidth + "px";
+
+    console.log(mp.clientWidth + " musicPlayer width;")
+
+    la.style.height = mp.clientHeight + "px";
+    lb.style.height = mp.clientHeight + "px";
+
+    console.log(mp.clientHeight + " musicPlayer height;")
 }
 
 function isInViewport(element) {
@@ -456,6 +470,7 @@ window.addEventListener("keydown", function(e) {
         e.preventDefault();
 }, false);
 
+
 window.onresize = function (event) {
     slideBTNMov(slidePercent,false,true,true);
     scaleMusicPlayer();
@@ -469,6 +484,10 @@ videoBgObj.addEventListener('loadeddata', () => {
         videoLoaded = true;
     }
 });
+
+setInterval(function(){
+    console.log(Tracks[4].readyState);
+},0);
 
 let loadChecker;
 function checkLoad(){
@@ -487,8 +506,8 @@ function checkLoad(){
             setTimeout(function(){
                 la.style.animation="none";
                 lb.style.animation="none";
-                la.remove();
-                lb.remove();
+                // la.remove();
+                // lb.remove();
             },1600);
         }
     },0);

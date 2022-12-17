@@ -699,7 +699,7 @@
         position: relative;
         z-index: 98;
         filter: drop-shadow(0.36vw 0.24vw 0.1vw rgb(0 0 0 / 0.6));
-        padding:1vh;
+        padding: 1vh;
       }
       
       .verticalSlideLine {
@@ -751,14 +751,14 @@
         position: absolute;
 
         width: 1728px;
-        height: 756px;
+        height: 675.5px;
 
-        object-fit: cover;
+        object-fit: fill;
 
         z-index: 100;
 
         background-color: #242126;
-        filter: blur(15.92vh);
+/*         backdrop-filter: blur(15.92vh); */
 
         opacity: 80%;
       }
@@ -769,9 +769,9 @@
         position: absolute;
 
         width: 1728px;
-        height: 756px;
+        height: 675.5px;
 
-        object-fit: cover;
+        object-fit: fill;
 
         z-index: 100;
 
@@ -793,8 +793,8 @@
         margin:0;
         position: absolute;
 
-        width: 1728px;
-        height: 756px;
+        width: 100vw;
+        height: 100vh;
 
         object-fit: cover;
 
@@ -803,11 +803,11 @@
       }
 
       .loader {
-        border: 16px solid #f3f3f3; /* Light grey */
-        border-top: 16px solid #3498db; /* Blue */
+        border: 1vw solid #f3f3f3; /* Light grey */
+        border-top: 1vw solid #3498db; /* Blue */
         border-radius: 50%;
-        width: 120px;
-        height: 120px;
+        width: 6vw;
+        height: 6vw;
         animation: spin 2s linear infinite;
       }
 
