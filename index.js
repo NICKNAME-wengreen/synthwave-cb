@@ -475,13 +475,17 @@ window.onresize = function (event) {
 }
 
 let videoLoaded=false;
-var videoBgObj = document.getElementById('videoBg');
-videoBgObj.addEventListener('loadeddata', () => {
-    if(videoBgObj.readyState >= 2){
-        console.log("Video is loaded!");
-        videoLoaded = true;
-    }
-});
+let videoBgInterval;
+function checkVideoLoad(){
+    var videoBgObj = document.getElementById('videoBg');
+    videoBgInterval = setInterval(function(){
+        if(videoBgObj.readyState >= 2){
+            console.log("Video is loaded!");
+            videoLoaded = true;
+            clearInterval(videoBgInterval);
+        }
+    },0);
+}
 
 let audioLoaded = false;
 let audioCheckInterval;
@@ -507,6 +511,7 @@ function checkAudioLoad(){
 let loadChecker;
 function checkLoad(){
     checkAudioLoad();
+    checkVideoLoad();
 
     loadChecker = setInterval(function(){
         if(videoLoaded && audioLoaded){
