@@ -475,13 +475,19 @@ window.onresize = function (event) {
 }
 
 let imagesLoaded=false;
-let imagesCheckInterval;
+// let imagesCheckInterval;
 function checkImagesLoad(){
-    let imageLoads = ["cp-ep1.jpg",
+    let imageLoads = ["carpBrutTrilogy.jpg",
+                      "cp-ep1.jpg",
                       "cp-ep2.jpg",
                       "cp-ep3.jpg",
                       "cp-lt.jpg",
                       "furi.jpg",
+                      "hlm2-s1.jpg",
+                      "hlm2-s2.jpg",
+                      "hlm2-s3.jpg",
+                      "hlm2bg.jpg",
+                      "hlmbg.jpg"
                      ];
 
     // var imagesLoad = [];
@@ -553,7 +559,7 @@ function checkLoad(){
     checkVideoLoad();
 
     loadChecker = setInterval(function(){
-        if(videoLoaded && audioLoaded){
+        if(imagesLoaded && audioLoaded && videoLoaded){
             MusicPlayerDataLoaded = true;
             console.log("All MetaData is loaded!");
             clearInterval(loadChecker);
