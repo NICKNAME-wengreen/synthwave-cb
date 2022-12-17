@@ -142,8 +142,40 @@
       }
 
       @keyframes DisapearLoader {
-        100%  {opacity:0%};
+        0%    {
+              backdrop-filter: blur(10px);
+              opacity: 100%;
+              }
+        100%  {
+              backdrop-filter: blur(10px);
+              opacity:0%
+              }
       }
+
+
+      @keyframes BlurIdle {
+        0%    {
+              backdrop-filter: blur(7vw);
+              background-color: #242126;
+              }
+        25%   {
+              backdrop-filter: blur(7vw);
+              background-color: #261426;
+              }
+        50%   {
+              backdrop-filter: blur(7vw);
+              background-color: #151f26;
+              }
+        75%   {
+              backdrop-filter: blur(7vw);
+              background-color: #1a2223;
+              }
+        100%  {
+              backdrop-filter: blur(7vw);
+              background-color: #242126;
+              }
+      }
+
 
       html, body {
         font: normal 10px Raleway;
@@ -758,8 +790,8 @@
         z-index: 100;
 
         background-color: #242126;
-/*         backdrop-filter: blur(15.92vh); */
-
+        animation: BlurIdle 10s linear infinite;
+/*         backdrop-filter: blur(10px); */
         opacity: 80%;
       }
 

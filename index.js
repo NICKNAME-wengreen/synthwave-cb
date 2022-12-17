@@ -559,7 +559,7 @@ function checkLoad(){
     checkVideoLoad();
 
     loadChecker = setInterval(function(){
-        if(imagesLoaded && audioLoaded && videoLoaded){
+        if(imagesLoaded && audioLoaded && !videoLoaded){
             MusicPlayerDataLoaded = true;
             console.log("All MetaData is loaded!");
             clearInterval(loadChecker);
