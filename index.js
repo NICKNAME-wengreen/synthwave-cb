@@ -39,7 +39,10 @@ function chngBgC(img){
                         },600);
 }
 
-let Tracks = [new Audio('music/DiscoZombiItalia.mp3'),
+let Tracks = [];
+
+function createAudios(){
+    Tracks = [new Audio('music/DiscoZombiItalia.mp3'),
               new Audio('music/LePerv.mp3'),
               new Audio('music/LookingForTracyTzu.mp3'),
               new Audio('music/MondayHunt.mp3'),
@@ -49,6 +52,7 @@ let Tracks = [new Audio('music/DiscoZombiItalia.mp3'),
               new Audio('music/YoureMine.mp3'),
               new Audio('music/EndTitles.mp3')
              ];
+}
 
 let TracksDurs=[];
 
@@ -57,6 +61,7 @@ function collectDurs(){
         TracksDurs[i]=Tracks[i].duration;
         console.log(TracksNames[i]+" -- "+TracksDurs[i]);
     }
+    audioLoaded = true;
 };
                 
 let TracksNames = ["Disco Zombi Italia",
@@ -288,83 +293,93 @@ function stopPress(){
     }
 }
         
-let holdenBTN=true;
-document.getElementById('slideBTN').onpointerdown = function(){
-    console.log("BTN_HOLDEN");
-    clearInterval(holdBTN);
-    holdenBTN=true
-    holdBTN=window.setInterval(function(){slideBTNMov(mX-10,true,true);},0);
-};
-
-let holdenBTNvL=true;
-document.getElementById('slideLBTN').onpointerdown = function(){
-    console.log("BTN_HOLDEN");
-    clearInterval(holdBTN);
-    holdenBTNvL=true
-    holdBTN=window.setInterval(function(){slideVertLBTNMov(mY-10,true,true);},0);
-};
-
-let holdenBTNvR=true;
-document.getElementById('slideRBTN').onpointerdown = function(){
-    console.log("BTN_HOLDEN");
-    clearInterval(holdBTN);
-    holdenBTNvR=true
-    holdBTN=window.setInterval(function(){slideVertRBTNMov(mY-10,true,true);},0);
-};
-
 let MusicPlayerDataLoaded = false;
-document.body.onkeyup = function(e){
-    if(isInViewport(document.getElementById('musicPlayer'))&&MusicPlayerDataLoaded){
-        if(e.keyCode == 32){
-            stopPress();
-        }else
-        if(e.keyCode == 39){
-            chngTrack(0,'next');
-        }else
-        if(e.keyCode == 37){
-            chngTrack(0,'prev');
-        }else
-        if(e.keyCode == 38){
-            if(audioVolume<=0.95){
-                audioVolume+=0.05;
-                console.log(Math.floor(audioVolume)+" ratio AVol")
-                slideVertRBTNMov(audioVolume,false,true,true);
-            }else{
-                audioVolume=1;
-                console.log(Math.floor(audioVolume)+" ratio AVol")
-                slideVertRBTNMov(audioVolume,false,true,true);
-            }
-        }else
-        if(e.keyCode == 40){
-            if(audioVolume>=0.05){
-                audioVolume-=0.05;
-                console.log(Math.floor(audioVolume)+" ratio AVol")
-                slideVertRBTNMov(audioVolume,false,true,true);
-            }else{
-                audioVolume=0;
-                console.log(Math.floor(audioVolume)+" ratio AVol")
-                slideVertRBTNMov(audioVolume,false,true,true);
-            }
-        }
-    }
-}
 
-document.addEventListener("mouseup", function(){
-    console.log("UNHOLDEN");
-    if(holdenBTN||holdenBTNvL||holdenBTNvR){
+let holdenBTN=true;
+let holdenBTNvL=true;
+let holdenBTNvR=true;
+
+function startEvents(){
+    document.getElementById('slideBTN').onpointerdown = function(){
+        console.log("BTN_HOLDEN");
         clearInterval(holdBTN);
-        holdenBTN=false;
-        
-        alignCrntTime();
-        holdBTN = window.setInterval(function(){
-            if(!holdenBTN){
-                alignCrntTime();
+        holdenBTN=true
+        holdBTN=window.setInterval(function(){slideBTNMov(mX-10,true,true);},0);
+    };
+
+    document.getElementById('slideLBTN').onpointerdown = function(){
+        console.log("BTN_HOLDEN");
+        clearInterval(holdBTN);
+        holdenBTNvL=true;
+        holdBTN=window.setInterval(function(){slideVertLBTNMov(mY-10,true,true);},0);
+    };
+
+    document.getElementById('slideRBTN').onpointerdown = function(){
+        console.log("BTN_HOLDEN");
+        clearInterval(holdBTN);
+        holdenBTNvR=true
+        holdBTN=window.setInterval(function(){slideVertRBTNMov(mY-10,true,true);},0);
+    };
+
+    document.body.onkeyup = function(e){
+        if(isInViewport(document.getElementById('musicPlayer'))&&MusicPlayerDataLoaded){
+            if(e.keyCode == 32){
+                stopPress();
+            }else
+            if(e.keyCode == 39){
+                chngTrack(0,'next');
+            }else
+            if(e.keyCode == 37){
+                chngTrack(0,'prev');
+            }else
+            if(e.keyCode == 38){
+                if(audioVolume<=0.95){
+                    audioVolume+=0.05;
+                    console.log(Math.floor(audioVolume)+" ratio AVol")
+                    slideVertRBTNMov(audioVolume,false,true,true);
+                }else{
+                    audioVolume=1;
+                    console.log(Math.floor(audioVolume)+" ratio AVol")
+                    slideVertRBTNMov(audioVolume,false,true,true);
+                }
+            }else
+            if(e.keyCode == 40){
+                if(audioVolume>=0.05){
+                    audioVolume-=0.05;
+                    console.log(Math.floor(audioVolume)+" ratio AVol")
+                    slideVertRBTNMov(audioVolume,false,true,true);
+                }else{
+                    audioVolume=0;
+                    console.log(Math.floor(audioVolume)+" ratio AVol")
+                    slideVertRBTNMov(audioVolume,false,true,true);
+                }
             }
         }
-        ,1000);
-
     }
-});
+
+    document.addEventListener("mouseup", function(){
+        console.log("UNHOLDEN");
+        if(holdenBTN||holdenBTNvL||holdenBTNvR){
+            clearInterval(holdBTN);
+            holdenBTN=false;
+
+            alignCrntTime();
+            holdBTN = window.setInterval(function(){
+                if(!holdenBTN){
+                    alignCrntTime();
+                }
+            }
+            ,1000);
+
+        }
+    });
+
+    window.addEventListener("keydown", function(e) {
+        if(([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1)&&
+        isInViewport(document.getElementById('musicPlayer')))
+            e.preventDefault();
+    }, false);
+}
 
 let nextBTNPressedAnim;
 let prevBTNPressedAnim;
@@ -456,18 +471,13 @@ function isInViewport(element) {
 }
 
 function start(){
+    console.log("Second");
+    createAudios();
+    startEvents();
     checkLoad();
-    collectDurs();
     chngImg(0);
     scaleMusicPlayer();
 }
-
-window.addEventListener("keydown", function(e) {
-    if(([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1)&&
-       isInViewport(document.getElementById('musicPlayer')))
-        e.preventDefault();
-}, false);
-
 
 window.onresize = function (event) {
     slideBTNMov(slidePercent,false,true,true);
@@ -475,7 +485,6 @@ window.onresize = function (event) {
 }
 
 let imagesLoaded=false;
-// let imagesCheckInterval;
 function checkImagesLoad(){
     let imageLoads = ["carpBrutTrilogy.jpg",
                       "cp-ep1.jpg",
@@ -490,33 +499,15 @@ function checkImagesLoad(){
                       "hlmbg.jpg"
                      ];
 
-    // var imagesLoad = [];
-
     imageLoads.forEach(e => {
         var img = new Image();
         img.src = e;
-        // imagesLoad.push(img);
     });
 
     console.log("ImageCount "+imageLoads.length);
     console.log("Images is loaded!");
 
-    // var sumStts=0;
-    // var i=0;
-    //
-    // imagesCheckInterval = setInterval(function(){
-    //     imagesLoad.forEach(e => {
-    //         console.log(" ["+imageLoads[i%imagesLoad.length]+"]> = " + imagesLoad[1].readyState);
-    //         sumStts+=e.readyState;
-    //         i++;
-    //     });
-
-        // if(sumStts>=(imagesLoad.length*4)){
-        //     clearInterval(imagesCheckInterval);
-        //     console.log("All Image Loaded!");
-            imagesLoaded = true;
-    //     }
-    // },0);
+    imagesLoaded = true;
 }
 
 let videoLoaded=false;
@@ -547,7 +538,7 @@ function checkAudioLoad(){
             if(sumStts>=(Tracks.length*4)){
                 clearInterval(audioCheckInterval);
                 console.log("All Audio Loaded!");
-                audioLoaded = true;
+                collectDurs();
             }
         },0);
 }
@@ -579,5 +570,3 @@ function checkLoad(){
         }
     },0);
 }
-
-window.onload = start;

@@ -225,6 +225,7 @@
       }
       
       .buttonBarBtn {
+        position: relative;
         font: normal 1.2vw Syncopate;
         color: white;
         padding-left: 1vw;
@@ -235,22 +236,41 @@
         cursor: pointer;
         display: inline-block;
         user-select: none;
+        z-index: 100;
       }
 
       .buttonBarBtn:hover {
+        position: relative;
         font: normal 200% Syncopate;
         color: white;
         padding-left: 1vw;
         padding-right: 1vw;
         border: none;
-        filter: blur(1px) invert(10%);
-        padding: 14px 28px;
+        filter: blur(0.1vw) invert(10%);
+        padding: 0.729vw 1.458vw;
         cursor: pointer;
         display: inline-block;
+        user-select: none;
+        z-index: 100;
+      }
+
+      .ctxMenu {
+        background-color: transparent;
+        width: 9vw;
+        height: 36vh;
+        transform: translatex(-1.5vw);
+        position: absolute;
+        opacity: 100%;
+        z-index: 101;
+        color: green;
+        padding-top: 6vh;
+/*         overflow: hidden; */
+        border-bottom: 15vh solid #0d0e10;
+
       }
 
       .siteBar {
-        height: 3vw;
+        height: 6vh;
         width: 100vw;
         background-color: #121417;   
         padding-left: 5vw;
