@@ -88,14 +88,7 @@ let TracksIcons = ["cp-ep2.jpg",
                   
 let currentTrack=0;
 let audioVolume=1;
-
-function getPosition(element){
-    var rect = element.getBoundingClientRect();
-    return {
-        x: rect.left,
-        y: rect.top
-    };
-}      
+let effectIntensity=1;
 
 let mX;
 let mY;
@@ -132,6 +125,7 @@ function slideBTNMov(x,align=false,trackMov=true,ratio=false){
     if(pos<0)pos=0;
 
     slidePercent = pos/max;
+    if(slidePercent==NaN)slidePercent=0;
 
     console.log(" [SlidePercent = " + slidePercent + " ] ");
 
@@ -179,7 +173,8 @@ function slideVertRBTNMov(y,align=false,trackMov=true,ratio=false){
 
 let clkSlideVertLBTN=false;
 let maxvertL;
-function slideVertLBTNMov(x,align=false,trackMov=true,ratio=false){
+// effectIntensity
+function slideVertLBTNMov(y,align=false,trackMov=true,ratio=false){
     var s = document.getElementById('slideVertLLine');
     var e = document.getElementById('slideLBTN');
     var pos;
@@ -188,7 +183,7 @@ function slideVertLBTNMov(x,align=false,trackMov=true,ratio=false){
 
     if(align){
         var lineY = getPosition(s).y;
-        pos = x - lineY;
+        pos = y - lineY;
     }else if(ratio){
         pos = (1-y) * maxvertL;
     }else{
@@ -198,9 +193,13 @@ function slideVertLBTNMov(x,align=false,trackMov=true,ratio=false){
     if(pos>maxvertL)pos=maxvertL;
     if(pos<0)pos=0;
 
+    if(trackMov)
     e.style.transform='translatey('+pos+'px)';
 
     console.log((pos/maxvertL)*100+"%");
+
+    effectIntensity=1-(pos/maxvertL);
+    // Tracks[currentTrack].volume=effectIntensity;
 
     if(clkSlideVertLBTN){
         clkSlideVertLBTN=false;
@@ -208,18 +207,14 @@ function slideVertLBTNMov(x,align=false,trackMov=true,ratio=false){
 }
 
 function clickSlideBTN(){
-    var e = document.getElementById('slideBTN');
     clkSlideBTN=true;
     setTimeout(slideBTNMov(mX,true),0);
 }
-
 function clickSlideVertLBTN(){
-    // var e = document.getElementById('slideLBTN');
     clkSlideVertLBTN=true;
     setTimeout(slideVertLBTNMov(mY,true),0);
 }
 function clickSlideVertRBTN(){
-    // var e = document.getElementById('slideRBTN');
     clkSlideVertRBTN=true;
     setTimeout(slideVertRBTNMov(mY,true),0);
 }
@@ -233,8 +228,6 @@ function alignCrntTime(){
 
     dc.innerHTML = minutes+":"+seconds;
     slideBTNMov(Math.floor((crntDur/maxDur)*max));
-
-    // console.log("|"+Math.floor((crntDur/maxDur)*max)+'px');
 
     if(crntDur==maxDur){
         stopPressed=false;
@@ -321,7 +314,23 @@ function startEvents(){
         holdBTN=window.setInterval(function(){slideVertRBTNMov(mY-10,true,true);},0);
     };
 
+    var watermark = document.getElementById('watermark')
+    watermark.onpointerdown = function(){
+        watermark.style.animation="DisapearLoader 1.6s 1 forwards";
+
+        setTimeout(function(){
+            watermark.style.animation="none";
+            watermark.remove();
+        },1600);
+    }
+
     document.body.onkeyup = function(e){
+        var ctx = document.getElementById('ctxMenu');
+        if(e.keyCode == 27 && isInViewport(ctx) && ctxMenuBtnPressed){
+            console.log("PRESSED TEST");
+            ctxMenuBtnPressed = true;
+            ctxMenuBtnPress();
+        }else
         if(isInViewport(document.getElementById('musicPlayer'))&&MusicPlayerDataLoaded){
             if(e.keyCode == 32){
                 stopPress();
@@ -437,51 +446,25 @@ function chngImg(index=0){
     },600);
 }
 
-function scaleMusicPlayer(){
-    var e = document.getElementById('videoBg');
-    var mp = document.getElementById('musicPlayer');
-
-    var la = document.getElementById('loadScreen');
-    var lb = document.getElementById('loadScreenCtx');
-
-    console.log("|X: "+1920/window.screen.availWidth+"|Y: "+1080/window.screen.availHeight);
-
-    e.style.width = mp.clientWidth + "px";
-    e.style.height = mp.clientHeight + "px";
-
-    la.style.width = mp.clientWidth + "px";
-    lb.style.width = mp.clientWidth + "px";
-
-    console.log(mp.clientWidth + " musicPlayer width;")
-
-    la.style.height = mp.clientHeight + "px";
-    lb.style.height = mp.clientHeight + "px";
-
-    console.log(mp.clientHeight + " musicPlayer height;")
-}
-
-function isInViewport(element) {
-    const rect = element.getBoundingClientRect();
-    return (
-        rect.top >= 0 &&
-        rect.left >= 0 &&
-        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-    );
-}
-
 function start(){
     console.log("Second");
+
+    window.onresize = function (event) {
+        console.log("Resizing!!!");
+        ctxResize();
+        slideBTNMov(slidePercent,false,true,true);
+        slideVertRBTNMov(audioVolume,false,true,true);
+        slideVertLBTNMov(effectIntensity,false,true,true);
+        scaleMusicPlayer();
+    }
+
     createAudios();
     startEvents();
     checkLoad();
     chngImg(0);
     scaleMusicPlayer();
-}
 
-window.onresize = function (event) {
-    slideBTNMov(slidePercent,false,true,true);
-    scaleMusicPlayer();
+
 }
 
 let imagesLoaded=false;
@@ -566,6 +549,7 @@ function checkLoad(){
                 lb.style.animation="none";
                 la.remove();
                 lb.remove();
+                loadScreenDeleted = true;
             },1600);
         }
     },0);

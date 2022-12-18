@@ -19,26 +19,24 @@
     
     <link rel="stylesheet" href="index.css"></link>
     <script async id="scripted" src="indexFast.js"></script>
-<!--     <script src="index.js"></script> -->
 
-<!--    <script>
-      var script = document.createElement('script');
-      script.src = "index.js";
-      script.async = true;
-      document.head.appendChild(script);
-    </script>-->
     <body>
     
-    <h1 class="watermark">
+    <h1 id="watermark" class="watermark">
     Fake Carpenter-Brut Site
     </h1>
-    
-    <div class="siteBar">
+
+    <div id="ctxMenu" class="ctxMenu">
+      <div class="ctxBtn">Help</div>
+      <div class="ctxBtn">Content</div>
+      <div class="ctxBtn">Currency</div>
+    </div>
+    <div id="siteBar" class="siteBar">
       <img class="logoBar" src="carpenter_brut.png">
       <h1 class="logoTextBar">carpenter brut</h1>
       <div class="buttonBar">
-      <div class="ctxMenu"><div style="position:absolute;z-index:102;left:23vh">fdajadj</div></div>
-        <button onclick="window.location.href='https://www.youtube.com/watch?v=DY1s9SmrQRE';" class="buttonBarBtn">LIST</button>
+<!--         onclick="window.location.href='https://www.youtube.com/watch?v=DY1s9SmrQRE';"  -->
+        <button class="buttonBarBtn ctxBtnMenu" id="ctxMenuBtn"><div class="ctxBtnMenuSqrL"><div class="ctxBtnMenuCircleL"></div></div>LIST<div class="ctxBtnMenuSqrR"><div class="ctxBtnMenuCircleR"></div></div></button>
         <button onclick="window.location.href='https://www.youtube.com/watch?v=Z9CuaJZpxK0';" class="buttonBarBtn">MEETS</button>
         <button onclick="window.location.href='https://www.redbubble.com/shop/carpenter+brut+posters';" class="buttonBarBtn">PRICE</button>
         <button onclick="window.location.href='https://www.instagram.com/carpenterbrut/';" class="buttonBarBtn">SOCIALS</button>

@@ -176,6 +176,15 @@
               }
       }
 
+      @keyframes ctxMenuSlide {
+        0%  {
+              transform: var(--ctx1);
+              }
+        100%  {
+              transform: var(--ctx2);
+              }
+      }
+
 
       html, body {
         font: normal 10px Raleway;
@@ -241,32 +250,112 @@
 
       .buttonBarBtn:hover {
         position: relative;
-        font: normal 200% Syncopate;
         color: white;
         padding-left: 1vw;
         padding-right: 1vw;
-        border: none;
-        filter: blur(0.1vw) invert(10%);
+        filter: blur(0.03vw);
         padding: 0.729vw 1.458vw;
         cursor: pointer;
-        display: inline-block;
         user-select: none;
         z-index: 100;
       }
 
+      .ctxBtnMenu {
+        background-color: #171a1e;
+        border-radius: 0.5vw 0.5vw 0 0;
+        width: 6vw;
+        height: 6vh;
+      }
+
+      .ctxBtnMenuCircleL {
+        position: absolute;
+        background-color: #121417;
+        width: 4.4vh;
+        height: 4.4vh;
+        bottom: 0%;
+        left: -1.1vw;
+        border-radius: 50%;
+      }
+
+      .ctxBtnMenuSqrL {
+        position: absolute;
+        background-color: #171a1e;
+        width: 2.2vh;
+        height: 2.2vh;
+        right: 100%;
+        top: 65%;
+      }
+
+      .ctxBtnMenuCircleR {
+        position: absolute;
+        background-color: #121417;
+        width: 4.4vh;
+        height: 4.4vh;
+        bottom: 0%;
+        right: -1.1vw;
+        border-radius: 50%;
+      }
+/*
+      .ctxBtnMenuSqrL:hover{
+        filter: invert(2%);
+      }
+      .ctxBtnMenuCircleL:hover{
+        filter: invert(2%);
+      }*/
+
+      .ctxBtnMenuSqrR {
+        position: absolute;
+        background-color: #171a1e;
+        width: 2.2vh;
+        height: 2.2vh;
+        left: 100%;
+        top: 65%;
+      }
+
+      .ctxBtn {
+        background-color: #2e343b;
+        border: 0.25vw solid #292f35;
+        width: 8vw;
+        height: 6vh;
+        border-radius: 0.25vw;
+        color: cyan;
+        font: bold 1vw Syncopate;
+        display: flex;
+        text-align: center;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 0.25vw;
+        margin-left: 0.25vw;
+        margin-right: 0.25vw;
+      }
+
+      @keyframes BTNout {
+        100% {
+              transform: scale(1.02);
+             }
+      }
+
+      .ctxBtn:hover {
+        color: white;
+        text-shadow: 0 0 1vw white;
+        animation: .1s normal forwards BTNout;
+      }
+
       .ctxMenu {
-        background-color: transparent;
-        width: 9vw;
-        height: 36vh;
-        transform: translatex(-1.5vw);
+        background-color: #14171a;
+        width: 8.5vw;
+        height: 20vh;
+        transform: translatex(0px);
+        backdrop-filter: blur(1px) opacity(50%);
         position: absolute;
         opacity: 100%;
-        z-index: 101;
-        color: green;
-        padding-top: 6vh;
-/*         overflow: hidden; */
-        border-bottom: 15vh solid #0d0e10;
-
+        z-index: 99;
+        overflow: hidden;
+        border-radius: 0 0 0.5vw 0.5vw;
+        padding-top: 0.125vw;
+        user-select: none;
+        visibility: hidden;
       }
 
       .siteBar {
@@ -275,13 +364,16 @@
         background-color: #121417;   
         padding-left: 5vw;
         padding-right: 5vw;
+        position: relative;
+        z-index: 100;
         display: flex;
         align-items: center;
         font: normal 0.6vw RussoOne;
+        overflow: hidden;
       }
       
       .siteBar:hover {
-        filter: invert(10%);
+        filter: invert(2%);
       }
 
       .middleBar {
@@ -390,6 +482,7 @@
         font: normal 2.4vw SairaCond-Med;
         display: inline-block;
       }
+
       .mainContainerArticle {
         margin-bottom: 3%;
       }
@@ -416,7 +509,7 @@
       .mainAdditionA {
         font: normal 1.4vw Jost-VariableFont;
         color: white;
-        border-radius: 12px;
+        border-radius: 0.625vw;
         background-color: #141412;
         margin-top: 4%;
         padding: 3%;
@@ -424,21 +517,21 @@
         border-right: 1vh transparent black;
         border-top: 1vh solid #7c93e9;
         user-select: none;
-        box-shadow: 6px 6px 6px black;
+        box-shadow: 0.312vw 0.312vw 0.312vw black;
       }
       
       .mainAdditionAText {
         padding: 3%;
-        text-shadow: #960800 3px 5px;
+        text-shadow: #960800 0.156vw 0.26vw;
         background-color: #100c14;
         border-radius: 1vh;
-        box-shadow: 8px 8px 10px black;
+        box-shadow: 0.416vw 0.416vw 0.52vw black;
       }
 
       .mainAdditionAImage {
         max-width: 45%;
         max-height: auto;
-        border-radius: 10px;
+        border-radius: 0.52vw;
       }
 
       .mainAdditionAImageTrilogy {
@@ -793,7 +886,8 @@
         position: fixed;
         top: 2%;
         left: 60%;
-        backdrop-filter: blur(40px);
+        backdrop-filter: blur(20vw);
+        z-index: 1000;
         user-select: none;
       }
 
